@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertExpense(expense: ExpenseEntity)
+    suspend fun insertExpense(expense: ExpenseEntity): Long
 
     @Query("SELECT * FROM expense_details")
     suspend fun getAllExpenses(): List<ExpenseEntity>

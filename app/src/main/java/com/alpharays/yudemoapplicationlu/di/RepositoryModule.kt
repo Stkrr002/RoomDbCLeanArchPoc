@@ -11,8 +11,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 abstract class RepositoryModule {
     @Binds
-    fun providesExpenseRepository(impl: ExpenseRepositoryImpl): ExpenseRepository {
-        return impl
-    }
+    abstract fun providesExpenseRepository(impl: ExpenseRepositoryImpl): ExpenseRepository
 
 }

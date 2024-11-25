@@ -11,8 +11,8 @@ import javax.inject.Inject
 class ExpenseRepositoryImpl @Inject constructor(
     private val expenseDao: ExpenseDao
 ) : ExpenseRepository {
-    override suspend fun addExpense(expense: Expense) {
-        expenseDao.insertExpense(expense.toExpenseEntity())
+    override suspend fun addExpense(expense: Expense): Long {
+        return expenseDao.insertExpense(expense.toExpenseEntity())
     }
 
     override suspend fun getAllExpense(): Flow<List<Expense>> {
@@ -23,6 +23,7 @@ class ExpenseRepositoryImpl @Inject constructor(
                 }
             )
         }
+
         return expenseList
     }
 }

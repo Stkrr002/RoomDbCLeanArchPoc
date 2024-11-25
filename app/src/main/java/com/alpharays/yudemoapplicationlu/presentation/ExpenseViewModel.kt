@@ -1,5 +1,6 @@
 package com.alpharays.yudemoapplicationlu.presentation
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,9 +26,13 @@ class ExpenseViewModel @Inject constructor(
         expense: Expense
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            expenseRepository.addExpense(
+            val returnedValue = expenseRepository.addExpense(
                 expense = expense
             )
+
+            println("Returned value after the insertion $returnedValue")
+            Log.d("ExpenseViewModel", "Returned value after the insertion $returnedValue")
+            getAllExpense()
         }
     }
 
