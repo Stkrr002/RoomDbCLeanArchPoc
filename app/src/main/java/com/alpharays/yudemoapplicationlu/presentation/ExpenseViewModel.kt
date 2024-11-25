@@ -25,20 +25,23 @@ class ExpenseViewModel @Inject constructor(
     fun addExpense(
         expense: Expense
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+      val job =  viewModelScope.launch(Dispatchers.IO) {
             val returnedValue = expenseRepository.addExpense(
                 expense = expense
             )
 
             println("Returned value after the insertion $returnedValue")
             Log.d("ExpenseViewModel", "Returned value after the insertion $returnedValue")
+        }
+
+        job.invokeOnCompletion {
             getAllExpense()
         }
     }
 
     fun getAllExpense() {
         viewModelScope.launch(Dispatchers.IO) {
-            expenseRepository.getAllExpense().collect {
+            expenseRepository.getAllExpense("FOOD").collect {
                 _expenseList.value = it
             }
         }

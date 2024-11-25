@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ExpenseRepository {
     suspend fun addExpense(expense: Expense):Long
-    suspend fun getAllExpense(): Flow<List<Expense>>
+    suspend fun getAllExpense(cat: String): Flow<List<Expense>>
 
 }

@@ -40,7 +40,7 @@ fun ExpenseHomeScreen() {
             Button(onClick = {
                 expenseViewModel.addExpense(
                     Expense(
-                        category = "FOOD",
+                        category = "travel",
                         amount = 50.0,
                         date = "12/12/2023",
                         title = "Lunch",

@@ -15,10 +15,10 @@ class ExpenseRepositoryImpl @Inject constructor(
         return expenseDao.insertExpense(expense.toExpenseEntity())
     }
 
-    override suspend fun getAllExpense(): Flow<List<Expense>> {
+    override suspend fun getAllExpense(cat: String): Flow<List<Expense>> {
         val expenseList = flow {
             emit(
-                expenseDao.getAllExpenses().map {
+                expenseDao.getAllExpenses(cat).map {
                     it.toExpense()
                 }
             )
